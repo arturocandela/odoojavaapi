@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.sge.nuestratienda.api.DAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-25T16:35:42" hostname="devcodesleep.ddns.net" time="0.19">
+<testsuite name="com.sge.nuestratienda.api.DAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-25T16:56:33" hostname="devcodesleep.ddns.net" time="0.773">
   <properties/>
-  <testcase name="getAllTasks()" classname="com.sge.nuestratienda.api.DAOTest" time="0.19"/>
+  <testcase name="updateTask()" classname="com.sge.nuestratienda.api.DAOTest" time="0.773"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

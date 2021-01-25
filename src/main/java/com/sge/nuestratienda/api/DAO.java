@@ -208,7 +208,12 @@ public class DAO {
     }
 
     public Task getTaskForId(int id) throws DAOOperationException{
-        return getTasksByQuery(asList("id","=",id))[0];
+        Task[] array = getTasksByQuery(asList("id","=",id));
+        if (array != null && array.length == 1) {
+            return array[0];
+        } else {
+            return null;
+        }
     }
 
 
