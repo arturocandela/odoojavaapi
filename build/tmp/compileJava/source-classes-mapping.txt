@@ -1,5 +1,19 @@
+com/sge/nuestratienda/api/DAOOperationException.java
+ com.sge.nuestratienda.api.DAOOperationException
+com/sge/nuestratienda/client/config/PropertyValues.java
+ com.sge.nuestratienda.client.config.PropertyValues
 Main.java
  Main
  Main$1
  Main$1$1
  Main$2
+ Main$3
+com/sge/nuestratienda/client/model/Task.java
+ com.sge.nuestratienda.client.model.Task
+com/sge/nuestratienda/api/DAO.java
+ com.sge.nuestratienda.api.DAO
+ com.sge.nuestratienda.api.DAO$1
+ com.sge.nuestratienda.api.DAO$1$1
+ com.sge.nuestratienda.api.DAO$2
+ com.sge.nuestratienda.api.DAO$3
+ com.sge.nuestratienda.api.DAO$4

@@ -1,3 +1,4 @@
+import com.sge.nuestratienda.client.config.PropertyValues;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.xmlrpc.client.XmlRpcClient;
@@ -16,34 +17,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
 
-        final String url = "http://nuestratienda.sge.com:8069",
-                db = "Preba2",
-                username = "frisix@gmail.com",
-                password = "FalodrVqems";
-
+        final String url = PropertyValues.Instance().getOdooUrl(),
+                db = PropertyValues.Instance().getDBName(),
+                username = PropertyValues.Instance().getDBUser(),
+                password = PropertyValues.Instance().getDBPassword();
 
         final XmlRpcClient client = new XmlRpcClient();
-
-        final XmlRpcClientConfigImpl start_config = new XmlRpcClientConfigImpl();
-
-        start_config.setBasicUserName(username);
-        start_config.setBasicPassword(password);
-
-
-        start_config.setServerURL(new URL("https://demo.odoo.com/start"));
-
-        final Map<String, Object> info = (Map<String, Object>)client.execute( start_config, "start", emptyList());
-
-/*
-        final String url = info.get("host"),
-                db = info.get("database"),
-                username = info.get("user"),
-                password = info.get("password");*/
-
 
         final XmlRpcClientConfigImpl common_config = new XmlRpcClientConfigImpl();
         common_config.setServerURL(
                 new URL(String.format("%s/xmlrpc/2/common", url)));
+
         Map<String,String> response = (Map<String,String>)client.execute(common_config, "version", emptyList());
 
         MapUtils.debugPrint(System.out,"Response",response);
@@ -62,17 +46,29 @@ public class Main {
 
         boolean hasAccessToModules = (boolean)models.execute("execute_kw", asList(
                 db, uid, password,
-                "res.partner", "check_access_rights",
+                "todo.task", "check_access_rights",
                 asList("read"),
                 new HashMap() {{ put("raise_exception", false); }}
         ));
 
         System.out.println(asList((Object[])models.execute("execute_kw", asList(
                 db, uid, password,
-                "res.partner", "search",
+                "todo.task", "search",
                 asList(asList(
-                        asList("is_company", "=", true)))
+                        asList("active", "=", true)))
         ))));
+
+        Map<String, Map<String, Object>> tareas = (Map<String, Map<String, Object>>)models.execute("execute_kw", asList(
+                db, uid, password,
+                "todo.task", "fields_get",
+                emptyList(),
+                new HashMap() {{
+                    put("attributes", asList("string", "help", "type"));
+                }}
+        ));
+
+        MapUtils.debugPrint(System.out,"Tareas",tareas);
+
 
 
     }
